@@ -103,7 +103,7 @@ const Msg = () => {
   const recipientInitial = recipientName[0] ? recipientName[0].toUpperCase() : "?";
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-dark)" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-dark)", position: "relative", overflow: "hidden", maxWidth: "100vw" }}>
       {/* Background Orbs */}
       <div className="auth-blob-1" style={{ opacity: 0.4 }}></div>
       <div className="auth-blob-2" style={{ opacity: 0.4 }}></div>
@@ -111,7 +111,7 @@ const Msg = () => {
       {/* Glassmorphic Header */}
       <header className="app-header">
         <div className="app-nav">
-          <div className="d-flex align-items-center gap-3">
+          <div className="d-flex align-items-center gap-3" style={{ minWidth: 0, flex: 1, overflow: "hidden" }}>
             <button
               type="button"
               className="icon-btn"

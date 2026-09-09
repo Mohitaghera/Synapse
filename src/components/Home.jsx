@@ -118,7 +118,7 @@ const Home = () => {
   });
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-dark)" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-dark)", position: "relative", overflow: "hidden", maxWidth: "100vw" }}>
       {/* Background Glowing Orbs */}
       <div className="auth-blob-1" style={{ opacity: 0.6 }}></div>
       <div className="auth-blob-2" style={{ opacity: 0.6 }}></div>
@@ -126,28 +126,13 @@ const Home = () => {
       {/* Top Navbar Header */}
       <header className="app-header">
         <div className="app-nav">
-          <div className="d-flex align-items-center gap-3">
-            <button
-              type="button"
-              className="icon-btn"
-              onClick={logoutConfirm}
-              title="Logout"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                <polyline points="16 17 21 12 16 7"></polyline>
-                <line x1="21" y1="12" x2="9" y2="12"></line>
+          <div className="app-brand">
+            <div className="app-brand-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
               </svg>
-            </button>
-
-            <div className="app-brand">
-              <div className="app-brand-icon">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                </svg>
-              </div>
-              <span className="app-brand-text">Synapse</span>
             </div>
+            <span className="app-brand-text">Synapse</span>
           </div>
 
           <button
