@@ -43,11 +43,6 @@ const Home = () => {
     navigate("/");
   };
 
-  const logoutConfirm = () => {
-    if (window.confirm("Are you sure you want to log out?")) {
-      logout();
-    }
-  };
 
   useEffect(() => {
     if (localStorage.getItem("status") === "0" || !userId) {
