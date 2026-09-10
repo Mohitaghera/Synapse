@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useState, useCallback, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDatabase, ref as setref, onValue, set, update } from "firebase/database";
 import { usePresence } from "../hooks/usePresence";
@@ -193,22 +193,25 @@ const Msg = () => {
       if (typeof unsubscribeMsg === "function") unsubscribeMsg();
       if (typeof unsubscribeUser === "function") unsubscribeUser();
     };
-  }, [database, param.uid, currentUid, markMessagesAsSeen]);
+  }, [database, param.uid, currentUid, markMessagesAsSeen, scrollToBottom]);
 
-  const arraymessage = [];
-  if (messages && typeof messages === "object") {
-    const currentUid = localStorage.getItem("uid");
-    Object.keys(messages).forEach((key) => {
-      const us = messages[key];
-      if (
-        us &&
-        ((us.sender === currentUid || us.receiver === currentUid) &&
-          (us.receiver === param.uid || us.sender === param.uid))
-      ) {
-        arraymessage.push({ ...us, id: key });
-      }
-    });
-  }
+  const arraymessage = useMemo(() => {
+    const arr = [];
+    if (messages && typeof messages === "object") {
+      const currentUid = localStorage.getItem("uid");
+      Object.keys(messages).forEach((key) => {
+        const us = messages[key];
+        if (
+          us &&
+          ((us.sender === currentUid || us.receiver === currentUid) &&
+            (us.receiver === param.uid || us.sender === param.uid))
+        ) {
+          arr.push({ ...us, id: key });
+        }
+      });
+    }
+    return arr;
+  }, [messages, param.uid]);
 
   const prevMsgCount = useRef(0);
   useEffect(() => {
