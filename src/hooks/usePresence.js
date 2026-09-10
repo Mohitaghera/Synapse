@@ -61,7 +61,7 @@ export const usePresence = (userId) => {
       if (!document.hidden) {
         setOnline();
       }
-      clearTimeout(idleTimer);
+      clearTimeout(idleTimer)
       idleTimer = setTimeout(() => {
         setOffline();
       }, 2 * 60 * 1000);
