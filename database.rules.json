@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "user": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "contacts": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$contactUid": {
+          ".write": "auth != null && (auth.uid === $uid || auth.uid === $contactUid)"
+        }
+      }
+    },
+    "msg": {
+      ".read": "auth != null",
+      "$msgId": {
+        ".write": "auth != null && newData.child('sender').val() === auth.uid && root.child('contacts').child(auth.uid).child(newData.child('receiver').val()).exists()"
+      }
+    }
+  }
+}
